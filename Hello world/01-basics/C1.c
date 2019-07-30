@@ -7,18 +7,18 @@ double distPoints(double x1, double x2, double y1, double y2, double z1, double 
     return d;
 }
 
-int main(int argc, const char* argv[]) {
+int main(int argc, const char *argv[]) {
     double x1, x2, y1, y2, z1, z2;
-    x1=atof(argv[1]);
-    y1=atof(argv[2]);
-    z1=atof(argv[3]);
-    x2=atof(argv[4]);
-    y2=atof(argv[5]);
-    z2=atof(argv[6]);
     if (argc != 7) {
         printf("Введите координаты точек: x1,y1,z1,x2,y2,z2");
         scanf("%lf %lf %lf %lf %lf %lf", &x1, &y1, &z1, &x2, &y2, &z2);
-
+    } else {
+        x1 = atof(argv[1]);
+        y1 = atof(argv[2]);
+        z1 = atof(argv[3]);
+        x2 = atof(argv[4]);
+        y2 = atof(argv[5]);
+        z2 = atof(argv[6]);
     }
     double ot = distPoints(x1, x2, y1, y2, z1, z2);
     printf("%lf", ot);
