@@ -1,4 +1,9 @@
 ﻿cmake_minimum_required (VERSION 3.8)
 
-add_executable(StackVariables "StackVariables.c")
-add_executable(StackArray "StackArray.c")
+#add_executable(StackVariables "StackVariables.c")
+#add_executable(StackArray "StackArray.c")
+add_executable(C1 "C1.c")
+add_executable(C2 "C2.c")
+add_executable(C3 "C3.c")
+add_executable(C4 "C4.c")
+add_executable(H3 "H3.c")
