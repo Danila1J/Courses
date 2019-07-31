@@ -13,9 +13,16 @@ void queen(int x1, int y1, int x2, int y2) {
     printf("%d\n",sln);
 }
 
-int main(){
-    printf("Введите координаты шахматной доски(1-8): x1 y1 x2 y2");
+int main(int argc, const char *argv[]){
     int x1,y1,x2,y2;
-    scanf("%d %d %d %d",&x1,&y1,&x2,&y2);
+    if (argc < 4) {
+        printf("Введите координаты шахматной доски(1-8): x1 y1 x2 y2");
+        scanf("%d %d %d",&x1,&y1,&x2,&y2);
+    } else {
+        x1 = atoi(argv[1]);
+        y1 = atoi(argv[2]);
+        x2 = atoi(argv[3]);
+        y2 = atoi(argv[4]);
+    }
     queen(x1,y1,x2,y2);
 }
