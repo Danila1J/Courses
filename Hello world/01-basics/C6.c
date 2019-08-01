@@ -6,7 +6,7 @@ double expF(double x, int n){
     double sum=1;
     double a=1;
     for(int i=1;i<n;++i){
-        a=a*x/i;
+        a*=x/i;
         sum+=a;
     }
     return sum;
