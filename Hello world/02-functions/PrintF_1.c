@@ -3,6 +3,6 @@
 //printf(char const* const _Format, ...);
 
 int main() {
-	//size_t q;// правой кнопкой мыши по size_t и нажать F12(go to definition)
+	//size_t q;// РїСЂР°РІРѕР№ РєРЅРѕРїРєРѕР№ РјС‹С€Рё РїРѕ size_t Рё РЅР°Р¶Р°С‚СЊ F12(go to definition)
 	printf("%d\n", N);
 }

@@ -2,6 +2,27 @@
 #include <math.h>
 #include <stdlib.h>
 
+/*!
+ * @brief Функция вычисления расстояние между точками
+ *
+ * @f$d=\sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2}\f$
+ *
+ * @code
+ * double distPoints(double x1, double x2, double y1, double y2, double z1, double z2) {
+    double d = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2) + pow((z2 - z1), 2));
+    return d;
+    }
+ * @endcode
+ * @param x1 Координата точки 1 по x
+ * @param y1 Координата точки 1 по y
+ * @param z1 Координата точки 1 по z
+ * @param x2 Координата точки 2 по x
+ * @param y2 Координата точки 2 по y
+ * @param z2 Координата точки 2 по z
+ * @return d Расстояние между двумя точками
+ *
+ */
+
 double distPoints(double x1, double x2, double y1, double y2, double z1, double z2) {
     double d = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2) + pow((z2 - z1), 2));
     return d;

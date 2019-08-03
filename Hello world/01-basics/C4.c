@@ -1,6 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*!
+ * @brief Функция дающий ответ возможен ли треугольник с введенными сторонами или он является вырожденными
+ *
+ * Сумма любых двух сторон должна быть меньше 3-ей стороны
+ *
+ * @f$(a<b+c),(b<a+c),(c<a+b)\f$
+ *
+ * @code
+ * void degenerateTriangle(double a,double b,double c){
+    printf("%d\n",(a<b+c) & (b<a+c) & (c<a+b));
+    }
+ * @endcode
+ * @param a Сторона треугольника а
+ * @param b Сторона треугольника b
+ * @param c Сторона треугольника с
+ * @return d Печатет результат: 1 - треугольник возможен, 0 - треугольник вырожденный
+ *
+ */
+
 void degenerateTriangle(double a,double b,double c){
     printf("%d\n",(a<b+c) & (b<a+c) & (c<a+b));
 }

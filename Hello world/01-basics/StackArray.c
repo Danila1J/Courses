@@ -1,4 +1,4 @@
-#include <stdio.h>
+н#include <stdio.h>
 
 void print_memory(const void* ptr) {
 	printf("Bytes from #%llu:\n", (unsigned long long) & ptr);
