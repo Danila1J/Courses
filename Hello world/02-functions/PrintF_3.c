@@ -155,5 +155,5 @@ void printF(const char *format, ...) {
 }
 
 int main() {
-    printF("%3f",1);
+    printF("%3f",1.967);
 }
