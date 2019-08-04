@@ -11,6 +11,60 @@
  *
  * @f$Аx^2+Bx+C=0\f$
  *
+ * @code
+ * double quadraticRoots(double a,double b,double c){
+    double Im,Re;
+    if(a == 0 && b == 0 && c == 0) {
+        printf("Некорректные коэффициенты");
+    }
+    if(a == 0 && b == 0 && c != 0) {
+        printf("Некорректные коэффициенты");
+    }
+    if(a == 0 && c == 0 && b != 0) {
+        printf("x = 0");
+    }
+    if (c == 0 && a != 0 && b != 0) {
+        double x = -b / a;
+        printf("Квадратное уравнение неполное, корни уравнения: x1 = 0, x2 = %g", x);
+    } else if (a == 0 && b != 0 && c != 0) {
+        double x = -c / b;
+        printf("Линейное уранение, корень уравнения: x = %g", x);
+    } else if (b == 0 && a != 0 && c != 0) {
+        if(a > 0 && c < 0) {
+            float sq = sqrt(-c / a);
+            printf("x1 = +%gi\n", sq);
+            printf("x2 = -%gi", sq);
+        }
+        if(a < 0 && c > 0) {
+            float sq = sqrt(c / (-a));
+            printf("x1 = +%gi\n", sq);
+            printf("x2 = -%gi", sq);
+        }
+    } else if (b == 0 && c == 0 && a != 0) {
+        printf("Квадратное уравнение неполное, корень уравнения: x = 0");
+    } else if (a != 0 && b != 0 && c != 0) {
+        double D = pow(b, 2) - 4 * a * c;
+        if (D == 0) {
+            double x = -b / (2 * a);
+            printf("Дискриминант = 0, один корень уравнения: x = %g", x);
+        }
+        if (D > 0) {
+            double x1 = -(b + sqrt(D)) / (2 * a);
+            double x2 = (-b - sqrt(D) / (2 * a));
+            printf("Дискриминант > 0, два корня уравнения: x1 = %g, x2 = %g", x1, x2);
+        }
+        if (D < 0) {
+            Re = -b / (2 * a);
+            Im = sqrt(-D) / (2 * a);
+            printf("x1 = %g + %gi\n", Re, Im);
+            printf("x2 = %g - %gi\n", Re, Im);
+        }
+    }
+    printf("Что-то пошло не так или не известный случай");
+    return 0.0;
+   }
+ * @endcode
+ *
  * @param a Коэффициент A перед x^2
  * @param b Коэффициент B перед x
  * @param c Число С=const
@@ -66,6 +120,8 @@ double quadraticRoots(double a,double b,double c){
             printf("x2 = %g - %gi\n", Re, Im);
         }
     }
+    printf("Что-то пошло не так или не известный случай");
+    return 0.0;
 }
 
 int main(int argc, const char **argv) {

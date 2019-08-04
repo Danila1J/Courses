@@ -18,7 +18,7 @@
     int v = abs(x1 - x2) == abs(y1 - y2);
     int sln = z || v;
     printf("%d\n",sln);
-    }
+   }
  * @endcode
  * @param x1 Кордината х точки 1
  * @param y1 Кордината y точки 1
@@ -43,7 +43,7 @@ int main(int argc, const char *argv[]){
     int x1,y1,x2,y2;
     if (argc < 4) {
         printf("Введите координаты шахматной доски(1-8): x1 y1 x2 y2");
-        scanf("%d %d %d",&x1,&y1,&x2,&y2);
+        scanf("%d %d %d %d",&x1,&y1,&x2,&y2);
     } else {
         x1 = atoi(argv[1]);
         y1 = atoi(argv[2]);

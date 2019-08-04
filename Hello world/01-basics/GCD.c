@@ -13,8 +13,10 @@
     }else{
         EuclidGCD(b,a%b);
     }
-    }
+    return 0;
+   }
  * @endcode
+ *
  * @param a Целое число а
  * @param b Целое число b
  * @return a Результат: НОД
@@ -27,6 +29,7 @@ int EuclidGCD(int a, int b) {
     }else{
         EuclidGCD(b,a%b);
     }
+    return 0;
 }
 
 int main(int argc, const char *argv[]) {

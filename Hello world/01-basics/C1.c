@@ -11,8 +11,9 @@
  * double distPoints(double x1, double x2, double y1, double y2, double z1, double z2) {
     double d = sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2) + pow((z2 - z1), 2));
     return d;
-    }
+   }
  * @endcode
+ *
  * @param x1 Координата точки 1 по x
  * @param y1 Координата точки 1 по y
  * @param z1 Координата точки 1 по z

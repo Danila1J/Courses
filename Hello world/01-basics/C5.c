@@ -11,10 +11,12 @@
  * @code
  * double function(double x){
     if(x<=0) return -x;
-    if(0<x<2) return x*x;
+    if(0<x&&x<2) return x*x;
     if(x>=2) return 4;
-    }
+    return 0.0;
+   }
  * @endcode
+ *
  * @param x Вещественное число
  * @return Ответ зависящий от x
  *
@@ -22,8 +24,9 @@
 
 double function(double x){
     if(x<=0) return -x;
-    if(0<x<2) return x*x;
+    if(0<x&&x<2) return x*x;
     if(x>=2) return 4;
+    return 0.0;
 }
 
 int main(int argc, const char *argv[]){
