@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <ctype.h>
+#include <stdlib.h>
 
+const int CODE_ZERO = 48;
 /*!
  * @brief Функция вывода в консоль целого числа с помощью putchar
  *
@@ -46,30 +48,55 @@
  *
  */
 
+long integerPart(double d) {
+    double integ;
+    double fraction = modf(d, &integ);
+    return integ;
+}
+
+long lenNumbWithoutInsignificantZeros(long n, int withOut) {
+    int count = 0;
+    {
+        long nc = n;
+        if (n == 0) {
+            putchar(n);
+            return 1;
+        }
+        while (nc != 0) {
+            if (withOut == 1) {
+                int zero = nc % 10;
+                if (zero == 0) {
+                    nc /= 10;
+                    continue;
+                }
+            }
+            nc = nc / 10;
+            count++;
+        }
+    }
+    return count;
+}
+
 void printInt(int n) {
     if (n < 0) {
         putchar(45);
         n = -n;
     }
-    int count = 0;
-    {
-        int nc = n;
-        if (n == 0) {
-            putchar(n);
-            return;
-        }
-        while (nc != 0) {
-            nc = nc / 10;
-            count++;
-        }
-    }
+    int count = lenNumbWithoutInsignificantZeros(n,0);
     int num = n;
     int div = pow(10, count - 1);
     for (int i = 0; i < count; ++i, div /= 10) {
         int digit = num / div;
-        putchar(48 + digit);
+        putchar(CODE_ZERO + digit);
         num %= div;
     }
+}
+
+void printFloatWithPrecision(int wide, double integ, double fraction) {
+    printInt(integ);
+    fraction = fraction * pow(10, wide);
+    putchar('.');
+    printInt(integerPart(fraction));
 }
 
 /*!
@@ -128,21 +155,24 @@ void printF(const char *format, ...) {
         if (format[i] == '\\' && format[i + 1] == 'n') {
             putchar(10);
         }
-        if (format[i] == '%' && (format[i + 2] == 'f')) {
-            int wide=10;
-            if(isdigit(format[i+1])!=0){
-                char a = format[i+1];
-                wide=a-'0';
-            }
-            i++;
-            double numb=va_arg(args, double);
+        int withPrecision = 0;
+        if (format[i] == '%' && (format[i + 3] == 'f')) {
+            withPrecision = 1;
+        }
+        if (withPrecision || (format[i] == '%' && (format[i + 1] == 'f'))) {
+            double numb = va_arg(args, double);
             double integ;
-            double fraction=modf(numb,&integ);
-            printInt(integ);
-            fraction=fraction*pow(10,wide);
-            putchar('.');
-            printInt(fraction);
-            i+=2;
+            double fraction = modf(numb, &integ);
+            double fracCpy = fraction;
+            fracCpy *= pow(10, 10);
+            int wide =1;
+            wide = lenNumbWithoutInsignificantZeros(integerPart(fracCpy),1);
+            if (withPrecision) {
+                wide = format[i + 2] - '0';
+                i += 2;
+            }
+            printFloatWithPrecision(wide, integ, fraction);
+            i += 2;
         }
         if (format[i] == '%' && (format[i + 1] == 'd' || format[i + 1] == 'i')) {
             printInt(va_arg(args, int));
@@ -155,5 +185,5 @@ void printF(const char *format, ...) {
 }
 
 int main() {
-    printF("%3f",1.967);
+    printF("%f", 2.77);
 }
