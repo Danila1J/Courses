@@ -14,3 +14,4 @@ endif ()
 
 add_subdirectory(01-basics)
 add_subdirectory(02-functions)
+add_subdirectory(03-struct)
