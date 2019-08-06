@@ -1,7 +1,7 @@
 ﻿cmake_minimum_required(VERSION 3.8)
 project("Hello world" C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED TRUE)
 if ("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
     add_compile_options(-Wall -Wextra -Wpedantic -Werror)

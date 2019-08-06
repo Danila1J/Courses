@@ -20,6 +20,7 @@ struct Person* createPerson(const char* lastName,
 	const int birthYear);
 struct Person* getPersonByID(FILE* f, int id);
 struct Person* getPersonByIndex(FILE* f, const int numb);
+void printPerson(const struct Person*const person);
 int getPersonCount(FILE* f);
 void addPerson(FILE* f, const struct Person* const person);
 void removePerson(FILE* f, int id);
