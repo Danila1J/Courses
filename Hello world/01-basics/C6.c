@@ -26,7 +26,7 @@
  *
  */
 
-double expF(double x, int n) {
+double expF(const double x, const int n) {
     double sum = 1;
     double a = 1;
     for (int i = 1; i < n; ++i) {

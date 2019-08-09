@@ -17,10 +17,9 @@
  *
  */
 
-void countSeconds(int n){
-    int k=n/3600;
-    int ot=(n-3600*k);
-    printf("С начала последнего часа прошло: %d секунд", ot);
+int secondsFromLastHour(int n){
+    int countSecond=n%3600;
+    return countSecond;
 }
 
 int main(int argc, const char *argv[]){
@@ -31,5 +30,5 @@ int main(int argc, const char *argv[]){
     } else {
         n = atoi(argv[1]);
     }
-    countSeconds(n);
+    printf("С начала последнего часа прошло: %d секунд", secondsFromLastHour(n));
 }

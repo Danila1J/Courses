@@ -23,13 +23,13 @@
  *
  */
 
-int per(int num) {
-    int a, b, c;
-    a = num % 10; //последнее число
+int replacementTensHundreds(int num) {
+    if(num>1000&&num<100) return num;
+    const int a = num % 10; //последнее число
     num /= 10; //первые два
-    b = num % 10; //число по середине
+    const int b = num % 10; //число по середине
     num /= 10;
-    c = num; //первое число
+    const int c = num; //первое число
     num = b * 100 + c * 10 + a; //
     return num;
 }
@@ -42,5 +42,5 @@ int main(int argc, const char *argv[]) {
     } else {
         n = atoi(argv[1]);
     }
-    printf("%d", per(n));
+    printf("%d", replacementTensHundreds(n));
 }

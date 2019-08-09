@@ -57,4 +57,13 @@ void addPerson(FILE *f, const struct Person *const person) {
     fwrite(person, sizeof(struct Person), 1, f);
 }
 
-void removePerson(FILE *f, const int id);
+void removePerson(FILE *f, const int id) {
+    fseek(f, 0, SEEK_END);
+    long sizeFile = ftell(f);
+    struct Person *masPersons[sizeFile];
+    *masPersons=(struct Person*)malloc(sizeFile);
+    fread(masPersons, sizeof(struct Person), getPersonCount(f), f);
+    fclose(f);
+    fopen("data","w+");
+    printf("%d",id);
+}

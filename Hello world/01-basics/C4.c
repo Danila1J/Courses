@@ -21,8 +21,8 @@
  *
  */
 
-void degenerateTriangle(double a,double b,double c){
-    printf("%d\n",(a<b+c) & (b<a+c) & (c<a+b));
+int degenerateTriangle(double a,double b,double c){
+    return (a<b+c) & (b<a+c) & (c<a+b);
 }
 
 int main(int argc, const char *argv[]){
@@ -35,5 +35,5 @@ int main(int argc, const char *argv[]){
         b = atoi(argv[2]);
         c = atoi(argv[3]);
     }
-    degenerateTriangle(a,b,c);
+    printf("%d",degenerateTriangle(a,b,c));
 }
