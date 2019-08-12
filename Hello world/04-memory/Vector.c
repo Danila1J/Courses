@@ -15,7 +15,7 @@ void vectorInit(struct Vector* const s, size_t n) {
 	}
 }
 
-void vectorFree(struct Vector* const s){
+void vectorFree(struct Vector* s){
     free(s->data);
     s->data=NULL;
     s->capacity=0;
