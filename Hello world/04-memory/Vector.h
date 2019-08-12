@@ -1,17 +1,21 @@
 #include <stdlib.h>
+#include <stdbool.h>
 /**
-Структура для работы с динамическим массивом float
+РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґРёРЅР°РјРёС‡РµСЃРєРёРј РјР°СЃСЃРёРІРѕРј float
 
 */
 struct Vector {
-	float* data; /*< Динамический массив float */
-	size_t capacity; /*< Число элементов под которые выделена память*/
-	size_t size; /*< Реальное число элементов в массиве*/
+	float* data; /*< Р”РёРЅР°РјРёС‡РµСЃРєРёР№ РјР°СЃСЃРёРІ float */
+	size_t capacity; /*< Р§РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ РїРѕРґ РєРѕС‚РѕСЂС‹Рµ РІС‹РґРµР»РµРЅР° РїР°РјСЏС‚СЊ*/
+	size_t size; /*< Р РµР°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РјР°СЃСЃРёРІРµ*/
 };
 /**
-Функция инициализирует структуру Vector с указанным количеством элементов
-@param v указатель на структуру
-@param n количество элементов
+Р¤СѓРЅРєС†РёСЏ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ СЃС‚СЂСѓРєС‚СѓСЂСѓ Vector СЃ СѓРєР°Р·Р°РЅРЅС‹Рј РєРѕР»РёС‡РµСЃС‚РІРѕРј СЌР»РµРјРµРЅС‚РѕРІ
+@param v СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂСѓ
+@param n РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ
 */
 void vectorInit(struct Vector* const v, size_t n);
 void vectorPrint(const struct Vector* const s);
+void vectorFree(struct Vector* const s);
+int firstIndexOf(const struct Vector* const s,float f);
+int lastIndexOf(const struct Vector* const structVector,float f);
