@@ -68,7 +68,6 @@ void vectorInsert(struct Vector *const structVector, int index, float f) {
 void vectorRemove(struct Vector *const structVector, int index) {
     int sizeNew = structVector->size - 1;
     float mas[sizeNew];
-
     for (int i = 0; i < index; ++i) {
         mas[i] = structVector->data[i];
     }
