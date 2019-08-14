@@ -17,5 +17,7 @@ struct Matrix{
 };
 struct Matrix* CreateVirtualMatrix(struct Matrix* structMatrixBase,size_t indRow,size_t indCol,size_t rows,size_t cols);
 struct Matrix* CreateMatrix(enum Type type,size_t rows,size_t cols);
+float GetMatrixValue(struct Matrix* structMatrix,size_t indRow,size_t indCol);
+void DestroyMatrix(struct Matrix* structMatrix);
 void matrixPrint(const struct Matrix *const structMatrix);
 
