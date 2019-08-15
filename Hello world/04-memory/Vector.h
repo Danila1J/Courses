@@ -16,7 +16,7 @@ struct Vector {
 */
 void vectorInit(struct Vector* const v, size_t n);
 void vectorPrint(const struct Vector* const s);
-void vectorFree(struct Vector* const s);
+void vectorFree(struct Vector* s);
 int firstIndexOf(const struct Vector* const s,float f);
 int lastIndexOf(const struct Vector* const structVector,float f);
 void vectorInsert(struct Vector* const structVector,int index,float f);
