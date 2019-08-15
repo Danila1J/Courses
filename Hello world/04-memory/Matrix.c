@@ -1,8 +1,7 @@
 #include "Matrix.h"
 #include <stdio.h>
 
-struct Matrix *
-CreateVirtualMatrix(struct Matrix *structMatrixBase, size_t indRow, size_t indCol, size_t rows, size_t cols) {
+struct Matrix *CreateVirtualMatrix(struct Matrix *structMatrixBase, size_t indRow, size_t indCol, size_t rows, size_t cols) {
     struct Matrix *structMatrix = malloc(sizeof(struct Matrix));
     structMatrix->data = structMatrixBase;
     structMatrix->type = VIRTUAL;
@@ -45,12 +44,12 @@ struct Matrix *CreateMatrix(enum Type type, size_t rows, size_t cols) {
         }
         default:
             printf("Не поддерживаемый способ представления матрицы");
-        case VIRTUAL:
-            break;
     }
     matr->type = type;
     matr->rows = rows;
     matr->cols = cols;
+    matr->shiftCol=0;
+    matr->shiftRow=0;
     return matr;
 }
 
@@ -71,6 +70,7 @@ float GetMatrixValue(struct Matrix *structMatrix, size_t indRow, size_t indCol) 
             return mf[indRow-1];
         }
         case VIRTUAL:
+            GetMatrixValue(structMatrix,indRow+structMatrix->shiftRow,indCol+structMatrix->shiftCol);
             break;
     }
     return -0.0;
