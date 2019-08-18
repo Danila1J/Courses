@@ -1,6 +1,22 @@
 #include "Matrix.h"
 #include <stdio.h>
 
+void InitMatrix(struct Matrix*const matrix, int numberFrom,int numberTo){
+    int temp=numberFrom;
+    for (size_t i = 0; i < matrix->rows; i++)
+    {
+        for (size_t j = 0; j < matrix->cols; j++)
+        {
+            for (int k = numberFrom; k <=numberTo ; ++k) {
+                if(temp>numberTo) temp=numberFrom;
+                SetMatrixValue(matrix,temp,i,j);
+                temp++;
+                break;
+            }
+        }
+    }
+}
+
 struct Matrix* CreateVirtualMatrix(struct Matrix* structMatrixBase, size_t indRow, size_t indCol, size_t rows, size_t cols) {
 	struct Matrix* structMatrix = malloc(sizeof(struct Matrix));
 	if (structMatrix == NULL) return NULL;
@@ -110,10 +126,9 @@ void SetMatrixValue(struct Matrix* matrix,float f, size_t indRow, size_t indCol)
 		GetMatrixValue(matrix, indRow + matrix->shiftRow, indCol + matrix->shiftCol);
 		break;
 	}
-	return -0.0;
 }
 
-float GetMatrixValue(struct Matrix* structMatrix, size_t indRow, size_t indCol) {
+float GetMatrixValue(const struct Matrix* structMatrix, size_t indRow, size_t indCol) {
 	switch (structMatrix->type) {
 	case FLAT: {
 		float* mf = (float*)structMatrix->data;
@@ -163,8 +178,8 @@ void DestroyMatrix(struct Matrix* structMatrix) {
 }
 
 void SwapRows(struct Matrix* matrix_1, struct Matrix* matrix_2, size_t indRow_1, size_t indRow_2) {
-	if (matrix_1->cols != matrix_2->cols && matrix_1->rows != matrix_2->rows) return NULL;
-	if (matrix_1->type = ROW && matrix_2->type == ROW) {
+	if (matrix_1->cols != matrix_2->cols && matrix_1->rows != matrix_2->rows) return;
+	if (matrix_1->type == ROW && matrix_2->type == ROW) {
 		float** first = (float**)matrix_1->data;
 		float** second = (float**)matrix_2->data;
 		float* temp = second[indRow_2];
