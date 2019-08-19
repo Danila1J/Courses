@@ -12,15 +12,19 @@ struct Person {
 	int birthYear;
 };
 
+struct Database;
+
 struct Person* createPerson(const char* lastName,
 	const char* firstName,
 	const char* middleName,
 	const unsigned char birthDay,
 	const unsigned char birthMonth,
 	const int birthYear);
-struct Person* getPersonByID(FILE* f, int id);
-struct Person* getPersonByIndex(FILE* f, const int numb);
+struct Database* openDatabase(const char* path);
+void closeDatabase(struct Database* d);
+struct Person* getPersonByID(struct Database* d, int id);
+struct Person* getPersonByIndex(struct Database* d, const int numb);
 void printPerson(const struct Person*const person);
-int getPersonCount(FILE* f);
-void addPerson(FILE* f, const struct Person* const person);
-void removePerson(FILE* f, int id);
+int getPersonCount(struct Database* d);
+void addPerson(struct Database* d, struct Person* const person);
+void removePerson(struct Database* d, int id);

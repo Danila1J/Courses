@@ -2,6 +2,25 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct Database{
+    FILE* f;
+    char* path;
+};
+
+struct Database* openDatabase(const char* path){
+    char* pathCpy= malloc(strlen(path)+1);
+    strcpy(pathCpy,path);
+    struct Database* d=malloc(sizeof(struct Database));
+    d->path=pathCpy;
+    d->f=fopen(pathCpy,"w+");
+    return d;
+}
+void closeDatabase(struct Database* d){
+    fclose(d->f);
+    free(d->path);
+    free(d);
+}
+
 struct Person *createPerson(
         const char *lastName,
         const char *firstName,
@@ -10,7 +29,7 @@ struct Person *createPerson(
         const unsigned char birthMonth,
         const int birthYear) {
     struct Person *const person = (struct Person *) malloc(sizeof(struct Person));
-    person->id = rand() % 100;
+    person->id = 0;
     strncpy(person->lastName, lastName, MAX_NAME_LENGTH);
     strncpy(person->firstName, firstName, MAX_NAME_LENGTH);
     strncpy(person->middleName, middleName, MAX_NAME_LENGTH);
@@ -20,12 +39,12 @@ struct Person *createPerson(
     return person;
 }
 
-struct Person *getPersonByID(FILE *f, const int id) {
+struct Person *getPersonByID(struct Database* d, const int id) {
     struct Person *const person = (struct Person *) malloc(sizeof(struct Person));
-    const int byteCount = getPersonCount(f) * sizeof(struct Person);
+    const int byteCount = getPersonCount(d) * sizeof(struct Person);
     for (int i = 0; i < byteCount; i += sizeof(struct Person)) {
-        fseek(f, i * sizeof(struct Person), SEEK_SET);
-        fread(person, sizeof(struct Person), 1, f);
+        fseek(d->f, i * sizeof(struct Person), SEEK_SET);
+        fread(person, sizeof(struct Person), 1, d->f);
         if (person->id == id) {
             return person;
         }
@@ -33,16 +52,16 @@ struct Person *getPersonByID(FILE *f, const int id) {
     return NULL;
 }
 
-struct Person *getPersonByIndex(FILE *f, const int index) {
+struct Person *getPersonByIndex(struct Database* d, const int index) {
     struct Person *const person = (struct Person *) malloc(sizeof(struct Person));
-    fseek(f, index * sizeof(struct Person), SEEK_SET);
-    fread(person, sizeof(struct Person), 1, f);
+    fseek(d->f, index * sizeof(struct Person), SEEK_SET);
+    fread(person, sizeof(struct Person), 1, d->f);
     return person;
 }
 
-int getPersonCount(FILE *f) {
-    fseek(f, 0, SEEK_END);
-    const long sizeFile = ftell(f);
+int getPersonCount(struct Database* d) {
+    fseek(d->f, 0, SEEK_END);
+    const long sizeFile = ftell(d->f);
     return sizeFile / sizeof(struct Person);
 }
 
@@ -52,18 +71,34 @@ void printPerson(const struct Person *const person) {
     printf("%s %s %s\n", person->lastName, person->firstName, person->middleName);
 }
 
-void addPerson(FILE *f, const struct Person *const person) {
-    fseek(f, 0, SEEK_END);
-    fwrite(person, sizeof(struct Person), 1, f);
+void addPerson(struct Database* d, struct Person *const person) {
+    struct Person *const person_ = (struct Person *) malloc(sizeof(struct Person));
+    const int byteCount = getPersonCount(d) * sizeof(struct Person);
+    int maxId=0;
+    for (int i = 0; i < byteCount; i += sizeof(struct Person)) {
+        fseek(d->f, i * sizeof(struct Person), SEEK_SET);
+        fread(person_, sizeof(struct Person), 1, d->f);
+        if(person_->id>maxId){
+            maxId=person_->id;
+        }
+    }
+    fseek(d->f, 0, SEEK_END);
+    person->id=maxId+1;
+    fwrite(person, sizeof(struct Person), 1, d->f);
 }
 
-void removePerson(FILE *f, const int id) {
-    fseek(f, 0, SEEK_END);
-    long sizeFile = ftell(f);
-    struct Person *masPersons[sizeFile];
-    *masPersons=(struct Person*)malloc(sizeFile);
-    fread(masPersons, sizeof(struct Person), getPersonCount(f), f);
-    fclose(f);
-    fopen("data","w+");
-    printf("%d",id);
+void removePerson(struct Database* d, const int id) {
+    fseek(d->f, 0, SEEK_END);
+    long sizeFile = ftell(d->f);
+    struct Person *person=(struct Person*)malloc(sizeFile);
+    fseek(d->f,0,SEEK_SET);
+    fread(person, sizeof(struct Person), sizeFile/ sizeof(struct Person), d->f);
+    int countPersons=getPersonCount(d);
+    d->f=freopen(d->path,"w+",d->f);
+    for (int i = 0; i <countPersons ; ++i) {
+        if((person+i)->id!=id){
+            fwrite(person+i, sizeof(struct Person),1,d->f);
+        }
+    }
+    free(person);
 }

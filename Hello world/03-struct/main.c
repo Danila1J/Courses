@@ -2,17 +2,17 @@
 #include <stdlib.h>
 
 int main() {
+    struct Database* d=openDatabase("data");
 	struct Person* p1 = createPerson("Ivanov", "Danila", "Aleksandrovich", 30, 12, 1999);
 	struct Person* p2 = createPerson("Alekseeva", "Liza", "Alekseevna", 26, 6, 1999);
-	FILE* f = fopen("data", "w+");
-	addPerson(f, p1);
-	addPerson(f, p2);
-	//printPerson(p1);
-    struct Person* p3=getPersonByID(f,p1->id);
-    //printPerson(p3);
-    removePerson(f,p2->id);
-	fclose(f);
+	addPerson(d, p1);
+	addPerson(d, p2);
+	printPerson(p1);
+	printPerson(p2);
+	removePerson(d,1);
+	printPerson(p1);
+	printPerson(p2);
+	closeDatabase(d);
 	free(p1);
 	free(p2);
-	free(p3);
 }
