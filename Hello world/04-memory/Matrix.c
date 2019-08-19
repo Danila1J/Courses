@@ -1,5 +1,6 @@
 #include "Matrix.h"
 #include <stdio.h>
+#include <math.h>
 
 void InitMatrix(struct Matrix*const matrix, int numberFrom,int numberTo){
     int temp=numberFrom;
@@ -148,7 +149,7 @@ float GetMatrixValue(const struct Matrix* structMatrix, size_t indRow, size_t in
 		GetMatrixValue(structMatrix, indRow + structMatrix->shiftRow, indCol + structMatrix->shiftCol);
 		break;
 	}
-	return -0.0;
+	return nanf("");
 }
 
 void DestroyMatrix(struct Matrix* structMatrix) {
