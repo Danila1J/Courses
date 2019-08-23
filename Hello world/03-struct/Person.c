@@ -65,25 +65,27 @@ int getPersonCount(struct Database* d) {
     return sizeFile / sizeof(struct Person);
 }
 
-void printPerson(const struct Person *const person) {
-    printf("%d\n", person->id);
-    printf("%d.%d.%d\n", person->birthDay, person->birthMonth, person->birthYear);
-    printf("%s %s %s\n", person->lastName, person->firstName, person->middleName);
+void printPerson(struct Database* d,int id) {
+    struct Person* person=getPersonByID(d,id);
+    printf("ID: %d\n", person->id);
+    printf("Дата рождения: %d.%d.%d\n", person->birthDay, person->birthMonth, person->birthYear);
+    printf("ФИО: %s %s %s\n", person->lastName, person->firstName, person->middleName);
 }
 
 void addPerson(struct Database* d, struct Person *const person) {
-    struct Person *const person_ = (struct Person *) malloc(sizeof(struct Person));
+    struct Person *const person_i = (struct Person *) malloc(sizeof(struct Person));
     const int byteCount = getPersonCount(d) * sizeof(struct Person);
     int maxId=0;
     for (int i = 0; i < byteCount; i += sizeof(struct Person)) {
-        fseek(d->f, i * sizeof(struct Person), SEEK_SET);
-        fread(person_, sizeof(struct Person), 1, d->f);
-        if(person_->id>maxId){
-            maxId=person_->id;
+        fseek(d->f, i , SEEK_SET);
+        fread(person_i, sizeof(struct Person), 1, d->f);
+        if(person_i->id>=maxId){
+            maxId=person_i->id+1;
         }
     }
+    free(person_i);
+    person->id=maxId;
     fseek(d->f, 0, SEEK_END);
-    person->id=maxId+1;
     fwrite(person, sizeof(struct Person), 1, d->f);
 }
 
@@ -101,4 +103,11 @@ void removePerson(struct Database* d, const int id) {
         }
     }
     free(person);
+}
+
+void printShort(struct Database* d){
+    for (int i = 0; i <getPersonCount(d) ; ++i) {
+        struct Person* person=getPersonByIndex(d,i);
+        printf("ID: %d, %s %.1s. %.1s.\n",person->id,person->lastName,person->firstName,person->middleName);
+    }
 }
