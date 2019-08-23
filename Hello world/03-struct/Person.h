@@ -1,6 +1,9 @@
 #pragma once 
 #include <stdio.h>
 #define MAX_NAME_LENGTH 32
+/**
+ * Структура для хранения данных о человеке
+ */
 
 struct Person {
 	int id;

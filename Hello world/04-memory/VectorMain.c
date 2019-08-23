@@ -1,6 +1,17 @@
 #include "Vector.h"
 #include <stdio.h>
 
+/**
+ *@brief Функция проверяет число на чётность
+ *
+ * @param number Входной параметр
+ * @return 1 - чётное, 0 - нечётное
+ */
+
+bool is_even(float number) {
+    return (int)number % 2 == 0;
+}
+
 int main() {
     struct Vector s1;
     struct Vector s2[3];

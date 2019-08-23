@@ -22,21 +22,19 @@ void vectorFree(struct Vector *s) {
     s->size = 0;
 }
 
-int firstIndexOf(const struct Vector *const structVector, float f) {
+int firstIndexOf(const struct Vector *const structVector, predicate p) {
     for (size_t i = 0; i < structVector->size; ++i) {
-        if (structVector->data[i] == f) {
+        if (p(structVector->data[i])) {
             return i;
         }
     }
     return -1;
 }
 
-int lastIndexOf(const struct Vector *const structVector, float f) {
+int lastIndexOf(const struct Vector *const structVector, predicate p) {
     int lastInd = -1;
     for (size_t i = 0; i < structVector->size; ++i) {
-        if (structVector->data[i] != f) {
-            continue;
-        } else {
+        if (p(structVector->data[i])) {
             lastInd = i;
         }
     }
@@ -66,18 +64,11 @@ void vectorInsert(struct Vector *const structVector, int index, float f) {
 }
 
 void vectorRemove(struct Vector *const structVector, int index) {
-    int sizeNew = structVector->size - 1;
-    float mas[sizeNew];
-    for (int i = 0; i < index; ++i) {
-        mas[i] = structVector->data[i];
+    if (index > vector->size) { return; }
+    for (size_t i = index; i < vector->size; ++i) {
+        vector->data[i] = vector->data[i + 1];
     }
-    for (int i = index+1; i <(int)structVector->size; ++i) {
-        mas[i-1] = structVector->data[i];
-    }
-    for (int i = 0; i < sizeNew; ++i) {
-        structVector->data[i] = mas[i];
-    }
-    structVector->size -= 1;
+    vector->size--;
 }
 
 void vectorPrint(const struct Vector *const s) {
