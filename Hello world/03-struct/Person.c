@@ -49,10 +49,12 @@ struct Person *getPersonByID(struct Database* d, const int id) {
             return person;
         }
     }
+    free(person);
     return NULL;
 }
 
 struct Person *getPersonByIndex(struct Database* d, const int index) {
+    if(index>=getPersonCount(d)) return NULL;
     struct Person *const person = (struct Person *) malloc(sizeof(struct Person));
     fseek(d->f, index * sizeof(struct Person), SEEK_SET);
     fread(person, sizeof(struct Person), 1, d->f);
