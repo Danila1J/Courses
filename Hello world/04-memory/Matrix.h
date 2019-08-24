@@ -40,7 +40,7 @@ struct Matrix {
  * @param numberFrom Инициализация числами от
  * @param numberTo Инициализация числами до
  */
-void InitMatrix(struct Matrix*const matrix, int numberFrom,int numberTo);
+void InitMatrix(struct Matrix*matrix, int numberFrom,int numberTo);
 
 /**
  * @brief Функция создания матрица с хранением типа Virtual
@@ -108,5 +108,5 @@ void SwapRows(struct Matrix* matrix_1, struct Matrix* matrix_2, size_t indRow_1,
  *
  * @param structMatrix Указатель на матрицу
  */
-void PrintMatrix(const struct Matrix* const structMatrix);
+void PrintMatrix(const struct Matrix* structMatrix);
 

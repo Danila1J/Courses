@@ -1,5 +1,4 @@
 #include "Vector.h"
-#include <stdio.h>
 
 /**
  *@brief Функция проверяет число на чётность
@@ -38,4 +37,12 @@ int main() {
     vectorPrint(s3);
     vectorRemove(s3,5);
     vectorPrint(s3);
+    vectorFree(&s1);
+    vectorFree(s2);
+    vectorFree(s2+1);
+    vectorFree(s2+2);
+    vectorFree(s3);
+    vectorFree(s4);
+    vectorFree(s4+1);
+    vectorFree(s4+2);
 }

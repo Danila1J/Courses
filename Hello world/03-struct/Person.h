@@ -29,11 +29,11 @@ struct Database;
  * @return Указатель на созданную структуру
  */
 struct Person* createPerson(const char* lastName,
-	const char* firstName,
-	const char* middleName,
-	const unsigned char birthDay,
-	const unsigned char birthMonth,
-	const int birthYear);
+                            const char* firstName,
+                            const char* middleName,
+                            unsigned char birthDay,
+                            unsigned char birthMonth,
+                            int birthYear);
 
 /**
  * Функция открытия Database
@@ -64,21 +64,21 @@ struct Person* getPersonByID(struct Database* d, int id);
  * @param numb ID для получения требуемого Person
  * @return Указатель на Person
  */
-struct Person* getPersonByIndex(struct Database* d, const int numb);
+struct Person* getPersonByIndex(struct Database* d,unsigned int numb);
 /**
  * Функция нахождения количества структур Person в Database
  *
  * @param d Указатель на Database
  * @return Число структур Person
  */
-int getPersonCount(struct Database* d);
+unsigned int getPersonCount(struct Database* d);
 /**
  * Функция добавления Person в Database
  *
  * @param d Указатель на Database
  * @param person Указатель на Person
  */
-void addPerson(struct Database* d, struct Person* const person);
+void addPerson(struct Database* d, struct Person* person);
 /**
  * Функция удаления Person из Database по ID
  *

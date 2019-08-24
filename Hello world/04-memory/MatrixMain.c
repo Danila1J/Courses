@@ -19,4 +19,6 @@ int main() {
 	printf("\n");
 	PrintMatrix(matrix2);
 	printf("\n");
+	DestroyMatrix(matrix);
+	DestroyMatrix(matrix2);
 }

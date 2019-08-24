@@ -12,11 +12,12 @@ int main() {
                "1 - просмотр всей информации о человеке по указанному id;\n"
                "2 - добавление нового человека в базу данных;\n"
                "3 - удаление человека из базы данных.\n"
-               "4 - закрытие меню\n");
+               "любая другая цифра - закрытие меню\n");
         printf("Введите команду: ");
-        int n;
-        scanf("%d", &n);
-        switch (n) {
+        char n[1];
+        char* end;
+        scanf("%s", n);
+        switch (strtol(n,&end,10)) {
             case 0: {
                 printf("------------------------------\n");
                 printShort(d);
@@ -25,10 +26,10 @@ int main() {
             }
             case 1: {
                 printf("Введите требуемый ID: ");
-                int id;
-                scanf("%d", &id);
+                char id_s[1];
+                scanf("%s", id_s);
                 printf("------------------------------\n");
-                printPerson(d, id);
+                printPerson(d, strtol(id_s,&end,10));
                 printf("------------------------------\n");
                 break;
             }
@@ -44,11 +45,11 @@ int main() {
                 char sO[MAX_NAME_LENGTH];
                 scanf("%s", sO);
                 printf("Введите день рождения: ");
-                int birthD;
-                scanf("%d", &birthD);
+                unsigned char birthD;
+                scanf("%hhu", &birthD);
                 printf("Введите месяц рождения: ");
-                int birthM;
-                scanf("%d", &birthM);
+                unsigned char birthM;
+                scanf("%hhu", &birthM);
                 printf("Введите год рождения: ");
                 int birthY;
                 scanf("%d", &birthY);
@@ -67,7 +68,7 @@ int main() {
                 printf("------------------------------\n");
                 break;
             }
-            case 4:
+            default:
                 goto Exit;
         }
     }
