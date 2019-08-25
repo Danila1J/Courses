@@ -64,14 +64,14 @@ struct Person* getPersonByID(struct Database* d, int id);
  * @param numb ID для получения требуемого Person
  * @return Указатель на Person
  */
-struct Person* getPersonByIndex(struct Database* d,unsigned int numb);
+struct Person* getPersonByIndex(struct Database* d,size_t numb);
 /**
  * Функция нахождения количества структур Person в Database
  *
  * @param d Указатель на Database
  * @return Число структур Person
  */
-unsigned int getPersonCount(struct Database* d);
+size_t getPersonCount(struct Database* d);
 /**
  * Функция добавления Person в Database
  *

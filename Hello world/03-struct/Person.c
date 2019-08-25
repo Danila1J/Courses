@@ -43,7 +43,7 @@ struct Person *getPersonByID(struct Database* d, const int id) {
     struct Person *const person = (struct Person *) malloc(sizeof(struct Person));
     size_t byteCount = getPersonCount(d) * sizeof(struct Person);
     for (size_t i = 0; i < byteCount; i += sizeof(struct Person)) {
-        fseek(d->f, i * sizeof(struct Person), SEEK_SET);
+        fseek(d->f,(long)i * (long)sizeof(struct Person), SEEK_SET);
         fread(person, sizeof(struct Person), 1, d->f);
         if (person->id == id) {
             return person;
@@ -53,15 +53,14 @@ struct Person *getPersonByID(struct Database* d, const int id) {
     return NULL;
 }
 
-struct Person *getPersonByIndex(struct Database* d, const unsigned int index) {
+struct Person *getPersonByIndex(struct Database* d, const size_t index) {
     if(index>=getPersonCount(d)) return NULL;
     struct Person *const person = (struct Person *) malloc(sizeof(struct Person));
-    fseek(d->f, index * sizeof(struct Person), SEEK_SET);
+    fseek(d->f, (long)index * (long)sizeof(struct Person), SEEK_SET);
     fread(person, sizeof(struct Person), 1, d->f);
     return person;
 }
-
-unsigned int getPersonCount(struct Database* d) {
+ size_t getPersonCount(struct Database* d) {
     fseek(d->f, 0, SEEK_END);
     const long sizeFile = ftell(d->f);
     return sizeFile / sizeof(struct Person);

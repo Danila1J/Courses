@@ -26,10 +26,10 @@ int main() {
             }
             case 1: {
                 printf("Введите требуемый ID: ");
-                char id_s[1];
+                char id_s[10];
                 scanf("%s", id_s);
                 printf("------------------------------\n");
-                printPerson(d, strtol(id_s,&end,10));
+                printPerson(d, (int)strtol(id_s,&end,10));
                 printf("------------------------------\n");
                 break;
             }
@@ -45,15 +45,15 @@ int main() {
                 char sO[MAX_NAME_LENGTH];
                 scanf("%s", sO);
                 printf("Введите день рождения: ");
-                unsigned char birthD;
-                scanf("%hhu", &birthD);
+                char birthD[2];
+                scanf("%s", birthD);
                 printf("Введите месяц рождения: ");
-                unsigned char birthM;
-                scanf("%hhu", &birthM);
+                char birthM[2];
+                scanf("%s", birthM);
                 printf("Введите год рождения: ");
-                int birthY;
-                scanf("%d", &birthY);
-                struct Person *p = createPerson(sF, sI, sO, birthD, birthM, birthY);
+                char birthY[4];
+                scanf("%s", birthY);
+                struct Person *p = createPerson(sF, sI, sO,(unsigned char) strtoul(birthD,&end,10), (unsigned char) strtoul(birthM,&end,10), (int) strtoul(birthY,&end,10));
                 addPerson(d, p);
                 free(p);
                 printf("------------------------------\n");
@@ -62,9 +62,9 @@ int main() {
             case 3: {
                 printf("------------------------------\n");
                 printf("Введите ID человека, для удаления из базы данных: ");
-                int id;
-                scanf("%d", &id);
-                removePerson(d, id);
+                char id[10];
+                scanf("%s", id);
+                removePerson(d, (int)strtol(id,&end,10));
                 printf("------------------------------\n");
                 break;
             }
