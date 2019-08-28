@@ -17,9 +17,7 @@ void vectorInit(struct Vector *const s, size_t n) {
 
 void vectorFree(struct Vector *s) {
     free(s->data);
-    s->data = NULL;
-    s->capacity = 0;
-    s->size = 0;
+    free(s);
 }
 
 int firstIndexOf(const struct Vector *const structVector, predicate p) {
@@ -53,7 +51,7 @@ void vectorInsert(struct Vector *const structVector, int index, float f) {
         mas[i + 1] = structVector->data[i];
     }
     if (structVector->capacity == structVector->size) {
-        vectorFree(structVector);
+        free(structVector->data);
         structVector->data = (float *) malloc(sizeof(structVector->data) * 2);
     }
     for (int i = 0; i <= sizeOld; ++i) {
@@ -63,12 +61,12 @@ void vectorInsert(struct Vector *const structVector, int index, float f) {
     structVector->capacity = sizeOld * 2;
 }
 
-void vectorRemove(struct Vector *const structVector, int index) {
-    if (index > vector->size) { return; }
-    for (size_t i = index; i < vector->size; ++i) {
-        vector->data[i] = vector->data[i + 1];
+void vectorRemove(struct Vector *const structVector, size_t index) {
+    if (index > structVector->size) { return; }
+    for (size_t i = index; i < structVector->size; ++i) {
+        structVector->data[i] = structVector->data[i + 1];
     }
-    vector->size--;
+    structVector->size--;
 }
 
 void vectorPrint(const struct Vector *const s) {

@@ -67,5 +67,5 @@ void vectorInsert(struct Vector* const structVector,int index,float f);
  * @param structVector Указатель на Vector
  * @param index Индекс удаляемого значения
  */
-void vectorRemove(struct Vector* const structVector,int index);
+void vectorRemove(struct Vector* const structVector,size_t index);
 
