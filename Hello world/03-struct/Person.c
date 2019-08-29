@@ -66,8 +66,7 @@ struct Person *getPersonByIndex(struct Database* d, const size_t index) {
     return sizeFile / sizeof(struct Person);
 }
 
-void printPerson(struct Database* d,int id) {
-    struct Person* person=getPersonByID(d,id);
+void printPerson(struct Person* person) {
     printf("ID: %d\n", person->id);
     printf("Дата рождения: %d.%d.%d\n", person->birthDay, person->birthMonth, person->birthYear);
     printf("ФИО: %s %s %s\n", person->lastName, person->firstName, person->middleName);
