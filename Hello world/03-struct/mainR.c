@@ -3,6 +3,7 @@
 
 
 int main(){
-    int n=read_int("Введите целое число:",0,1000);
-    printf("%d",n);
+    char *n=readStr("Введите строку: ");
+    printf("%s",n);
+    free(n);
 }

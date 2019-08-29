@@ -95,10 +95,9 @@ void removePerson(struct Database* d, int id);
 void printShort(struct Database* d);
 
 /**
- * Функция печати всей информации о человеке из базы данных по указанному ID
+ * Функция печати всей информации о человеке из базы данных
  *
- * @param d Указатель на базу данных
- * @param id ID требуемого Person
+ * @param person Указатель на структуру Person
  */
-void printPerson(struct Database* d,int id);
+void printPerson(struct Person* person);
 
