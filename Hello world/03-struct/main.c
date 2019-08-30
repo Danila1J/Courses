@@ -1,6 +1,7 @@
 #include "Person.h"
 #include <stdlib.h>
 #include <stdbool.h>
+#include "SafeRead.h"
 
 int main() {
     struct Database *d = openDatabase("data");
@@ -14,12 +15,9 @@ int main() {
                "1 - просмотр всей информации о человеке по указанному id;\n"
                "2 - добавление нового человека в базу данных;\n"
                "3 - удаление человека из базы данных.\n"
-               "любая другая цифра - закрытие меню\n");
-        printf("Введите команду: ");
-        char n[1];
-        char* end;
-        scanf("%1s", n);
-        switch (strtol(n,&end,10)) {
+               "4 - закрытие меню\n");
+        int command=readInt("Введите команду: ",0,10);
+        switch (command) {
             case 0: {
                 printf("------------------------------\n");
                 printShort(d);
@@ -27,11 +25,9 @@ int main() {
                 break;
             }
             case 1: {
-                printf("Введите требуемый ID: ");
-                char id_s[10];
-                scanf("%9s", id_s);
+                int id=readInt("Введите требуемый ID: ",0,1000);
                 printf("------------------------------\n");
-                struct Person* person=getPersonByID(d,(int)strtol(id_s,&end,10));
+                struct Person* person=getPersonByID(d,id);
                 printPerson(person);
                 free(person);
                 printf("------------------------------\n");
@@ -48,16 +44,10 @@ int main() {
                 printf("Введите отчество: ");
                 char sO[MAX_NAME_LENGTH];
                 scanf("%s", sO);
-                printf("Введите день рождения: ");
-                char birthD[2];
-                scanf("%2s", birthD);
-                printf("Введите месяц рождения: ");
-                char birthM[2];
-                scanf("%2s", birthM);
-                printf("Введите год рождения: ");
-                char birthY[4];
-                scanf("%4s", birthY);
-                struct Person *p = createPerson(sF, sI, sO,(unsigned char) strtoul(birthD,&end,10), (unsigned char) strtoul(birthM,&end,10), (int) strtoul(birthY,&end,10));
+                int birthD=readInt("Введите день рождения: ",0,31);
+                int birthM=readInt("Введите месяц рождения: ",0,12);
+                int birthY=readInt("Введите год рождения: ",0,2100);
+                struct Person *p = createPerson(sF, sI, sO,(unsigned char) birthD, (unsigned char) birthM, birthY);
                 addPerson(d, p);
                 free(p);
                 printf("------------------------------\n");
@@ -65,10 +55,8 @@ int main() {
             }
             case 3: {
                 printf("------------------------------\n");
-                printf("Введите ID человека, для удаления из базы данных: ");
-                char id[10];
-                scanf("%9s", id);
-                removePerson(d, (int)strtol(id,&end,10));
+                int id=readInt("Введите ID человека, для удаления из базы данных: ",0,1000);
+                removePerson(d, id);
                 printf("------------------------------\n");
                 break;
             }

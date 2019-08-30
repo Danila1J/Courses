@@ -1,6 +1,7 @@
 #include "Matrix.h"
 #include <stdio.h>
 
+
 int main() {
 	struct Matrix* matrix = CreateMatrix(FLAT, 2, 3);
 	struct Matrix* matrix2 = CreateMatrix(COLUMN, 2, 3);

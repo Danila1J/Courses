@@ -11,7 +11,6 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "MSVC")
 elseif ("${CMAKE_C_COMPILER_ID}" STREQUAL "Clang")
     add_compile_options(-Weverything -Werror)
 endif ()
-
 add_subdirectory(01-basics)
 add_subdirectory(02-functions)
 add_subdirectory(03-struct)

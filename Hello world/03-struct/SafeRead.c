@@ -1,6 +1,5 @@
 #include "SafeRead.h"
-#include <ctype.h>
-#include <stdbool.h>
+
 
 int readInt(const char *prompt, int min, int max) {
     while (1) {
@@ -89,11 +88,20 @@ char *readStr(const char *prompt) {
     int size=0;
     int capacity = 16;
     char *str = malloc(capacity);
+    if(str==NULL){
+        printf("Не удалось выделить требуемый блок памяти");
+        return NULL;
+    }
     int ch=EOF;
     while ((ch = fgetc(stdin)) != '\n' && ch != 0) {
         if (size == capacity-1) {
             capacity += 16;
             str = (char *) realloc(str, capacity);
+            if(str==NULL){
+                printf("Не удалось выделить требуемый блок памяти");
+                free(str);
+                return NULL;
+            }
         }
         str[size] =(char) ch;
         size++;
