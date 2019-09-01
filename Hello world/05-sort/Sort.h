@@ -7,4 +7,5 @@ void swap(int *n1, int *n2);
 void bubbleSort(int arr[], int n);
 void shakerSort(int *arr, int n);
 void quickSort(int *arr, int first, int last);
+void sortNaturalMerge(int* arr,int n);
 

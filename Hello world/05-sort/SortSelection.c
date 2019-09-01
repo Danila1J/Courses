@@ -1,3 +1,4 @@
+#include "Sort.h"
 
 int min(const int* data,int n){
     int min=0;
@@ -12,8 +13,6 @@ int min(const int* data,int n){
 void selectionSort(int *data,int n){
     for (int i = 0; i <n-1 ; ++i) {
         int ind=i+min(data+i,n-i);
-        int tmp=data[ind];
-        data[ind]=data[i];
-        data[i]=tmp;
+        swap(&data[ind],&data[i]);
     }
 }
