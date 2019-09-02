@@ -16,7 +16,7 @@ void printArray(int arr[], int size) {
     printf("\n");
 }
 
-int sequenceSize(int *arr, int n, bool forward) {
+int sequenceSize(const int *arr, int n, bool forward) {
     int count = 1;
     if (forward) {
         while (count < n && arr[count - 1] <= arr[count]) {

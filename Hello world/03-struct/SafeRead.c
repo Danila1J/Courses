@@ -1,6 +1,5 @@
 #include "SafeRead.h"
 
-
 int readInt(const char *prompt, int min, int max) {
     while (1) {
         printf("%s ", prompt);
@@ -71,7 +70,7 @@ double readDouble(const char *prompt, double min, double max) {
         char *endptr = NULL;
         errno = 0;
         double n = strtod(str, &endptr);
-        int tmp=errno;
+        int tmp = errno;
         if (tmp == ERANGE) {
             printf("Переполнение\n");
             continue;
@@ -101,8 +100,8 @@ double readDouble(const char *prompt, double min, double max) {
 
 char *readStr(const char *prompt) {
     printf("%s", prompt);
-    int size = 0;
-    int capacity = 16;
+    size_t size = 0;
+    size_t capacity = 16;
     char *str = malloc(capacity);
     if (str == NULL) {
         int c;
@@ -114,7 +113,7 @@ char *readStr(const char *prompt) {
     while ((ch = fgetc(stdin)) != '\n' && ch != EOF) {
         if (size == capacity - 1) {
             capacity += 16;
-            char* tmp=str;
+            char *tmp = str;
             str = (char *) realloc(str, capacity);
             if (str == NULL) {
                 printf("Не удалось выделить требуемый блок памяти");
