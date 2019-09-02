@@ -9,9 +9,9 @@
 //}
 
 int main() {
-    //int mas[3] = {1, 3, 4};
+    //int mas[7] = {1, 3, 4, 7, 5, 9, 0};
     int mas2[10] = {1, 3, 1, 4, 9, 7, 8, 4, 5, 2};
-    //int mas3[6];
+    //  int mas3[5]={1,2,3,2,1};
     //merge(mas, 3, mas2, 3, mas3, false);
     //selectionSort(mas,4);
     // printArray(mas2, 6);
