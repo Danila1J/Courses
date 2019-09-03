@@ -9,12 +9,12 @@ void swapPointer(int **a, int **b) {
     *b = temp;
 }
 
-void printArray(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
+//void printArray(int arr[], int size) {
+//    for (int i = 0; i < size; i++) {
+//        printf("%d ", arr[i]);
+//    }
+//    printf("\n");
+//}
 
 int sequenceSize(const int *arr, int n, bool forward) {
     int count = 1;
@@ -70,14 +70,14 @@ void sortNaturalMerge(int *arr, int n) {
     int *supportArray = malloc(sizeof(int) * n);
     int count=0;
     printf("Изначальный массив\n");
-    printArray(arr,n);
+    //printArray(arr,n);
     printf("---------------------------------------------------------------------\n");
     while(1){
         printf("Количество свапов = %d\n",count);
         printf("Массив arr = ");
-        printArray(arr,n);
+        //printArray(arr,n);
         printf("Массив support = ");
-        printArray(supportArray,n);
+        //printArray(supportArray,n);
         printf("---------------------------------------\n");
     merge(
             arr,
@@ -94,9 +94,9 @@ void sortNaturalMerge(int *arr, int n) {
         printf("Смещение вспомогательного массива = arr + %d\n",0);
         printf("\nПосле merge1\n");
         printf("Массив arr = ");
-        printArray(arr,n);
+       // printArray(arr,n);
         printf("Массив support = ");
-        printArray(supportArray,n);
+      //  printArray(supportArray,n);
         printf("---------------------------------------\n");
     if(sequenceSize(arr,n,true)+sequenceSize(arr,n,false)>=n){
         break;
@@ -115,9 +115,9 @@ void sortNaturalMerge(int *arr, int n) {
     printf("Смещение вспомогательного массива = arr + %d\n",n - (sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, true)-sequenceSize(arr, n, false), true)+sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, false)-sequenceSize(arr,n,true), false)));
         printf("\nПосле merge2\n");
         printf("Массив arr = ");
-        printArray(arr,n);
+       // printArray(arr,n);
         printf("Массив support = ");
-        printArray(supportArray,n);
+        //printArray(supportArray,n);
     printf("---------------------------------------\n");
     printf("После переноса оставшихся элементов\n");
     for (int i = sequenceSize(arr, n, true) + sequenceSize(arr + sequenceSize(arr, n, true),n - sequenceSize(arr, n, true) - sequenceSize(arr, n, false),true);
@@ -126,9 +126,9 @@ void sortNaturalMerge(int *arr, int n) {
         supportArray[i - 1] = arr[i];
     }
     printf("Массив arr = ");
-    printArray(arr,n);
+    //printArray(arr,n);
     printf("Массив support = ");
-    printArray(supportArray,n);
+   // printArray(supportArray,n);
     printf("*********************************************************************\n");
     swapPointer(&arr,&supportArray);
     ++count;
@@ -136,6 +136,6 @@ void sortNaturalMerge(int *arr, int n) {
     if((count%2)!=0){
         swapPointer(&arr,&supportArray);
     }
-    printArray(arr,n);
+    //printArray(arr,n);
 
 }

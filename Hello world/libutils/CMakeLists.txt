@@ -1,17 +1,25 @@
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-add_library(utils_static STATIC
+add_library(sort_static STATIC
         include/libutils/Sort.h
         src/SortBubble.c
         src/SortQuick.c
         src/SortSelection.c
         src/SortShaker.c
-        src/NaturalMergeSort.c)
-add_library(utils_dynamic SHARED
+        src/SortNaturalMerge.c)
+add_library(sort_dynamic SHARED
         include/libutils/Sort.h
         src/SortBubble.c
         src/SortQuick.c
         src/SortSelection.c
         src/SortShaker.c
-        src/NaturalMergeSort.c)
-target_include_directories(utils_static PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_include_directories(utils_dynamic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+        src/SortNaturalMerge.c)
+target_include_directories(sort_static PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(sort_dynamic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+add_library(read_static STATIC
+        include/libutils/SafeRead.h
+        src/SafeRead.c)
+add_library(read_dynamic SHARED
+        include/libutils/SafeRead.h
+        src/SafeRead.c)
+target_include_directories(read_static PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(read_dynamic PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
