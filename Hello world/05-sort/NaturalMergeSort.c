@@ -33,7 +33,7 @@ int sequenceSize(const int *arr, int n, bool forward) {
 void merge(const int *p1, int n1, const int *p2, int n2, int *dst, bool forward) {
     int i = 0;
     int j = n2 - 1;
-    bool intersects = p1 + n1 >= p2;
+    bool intersects = p1 + n1 > p2;
     if (intersects) {
         --n1;
         if (!forward) {
