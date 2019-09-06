@@ -45,7 +45,7 @@ void testSort(size_t n) {
 
 int main() {
     //testSort(10);
-    testSort(36);
+    testSort(15);
     //int mas[7] = {1, 3, 4, 7, 5, 9, 0};
     //int mas2[10] = {1, 3, 1, 4, 9, 7, 8, 4, 5, 2};
     //  int mas3[5]={1,2,3,2,1};

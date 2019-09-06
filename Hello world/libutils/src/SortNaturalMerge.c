@@ -121,13 +121,19 @@ void naturalMergeSort(int *arr, int n) {
     printf("---------------------------------------\n");
     printf("i = %d\n",0);
     printf("i < %d\n",(n - (sequenceSize(arr, n, true)+sequenceSize(arr+sequenceSize(arr,n,true), n-sequenceSize(arr,n,true), false))-(sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, true)-sequenceSize(arr, n, false), true)+sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, false)-sequenceSize(arr,n,true), false))));
+    printf(" i< %d\n",n- (sequenceSize(supportArray,n,true)+sequenceSize(supportArray,n,false)));
     printf(" arr[i + %d]\n",(sequenceSize(arr, n, true)+sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, true)-sequenceSize(arr, n, false), true)));
     printf("После переноса оставшихся элементов\n");
-    for (int i =0 ;
-    i < (n - (sequenceSize(arr, n, true)+sequenceSize(arr+sequenceSize(arr,n,true), n-sequenceSize(arr,n,true), false))-(sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, true)-sequenceSize(arr, n, false), true)+sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, false)-sequenceSize(arr,n,true), false)));
-    ++i) {
-        supportArray[i+sequenceSize(supportArray,n,true)] = arr[i+(sequenceSize(arr, n, true)+sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, true)-sequenceSize(arr, n, false), true))];
+
+
+    if(!(sequenceSize(supportArray,n,true)+sequenceSize(supportArray,n,false)>=n)){
+        for (int i =0;
+             i < (n - (sequenceSize(supportArray,n,true)+sequenceSize(supportArray,n,false)));
+             ++i) {
+            supportArray[i+sequenceSize(supportArray,n,true)] = arr[i+(sequenceSize(arr, n, true)+sequenceSize(arr+sequenceSize(arr, n, true), n-sequenceSize(arr, n, true)-sequenceSize(arr, n, false), true))];
+        }
     }
+
     printf("Массив arr = ");
     printArray(arr,n);
     printf("Массив support = ");
