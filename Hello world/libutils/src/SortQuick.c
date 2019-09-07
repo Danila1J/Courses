@@ -1,21 +1,27 @@
 #include <libutils/Sort.h>
 
-void quickSort(int *arr, int first, int last) {
-    int l = first, r = last;
-    int piv = arr[(l + r) / 2];
-    while (l <= r)
+void quickSort(int *data, int first, int last) {
+    if (first < last)
     {
-        while (arr[l] < piv)
-            l++;
-        while (arr[r] > piv)
-            r--;
-        if (l <= r)
-            swap (&arr[l++], &arr[r--]);
+        int left = first;
+        int right = last;
+        int middle = data[(left + right) / 2];
+        do
+        {
+            while (data[left] < middle) left++;
+            while (data[right] > middle) right--;
+            if (left <= right)
+            {
+                int tmp = data[left];
+                data[left] = data[right];
+                data[right] = tmp;
+                left++;
+                right--;
+            }
+        } while (left <= right);
+        quickSort(data, first, right);
+        quickSort(data, left, last);
     }
-    if (first < r)
-        quickSort (arr,first, r);
-    if (last > l)
-        quickSort(arr,l, last);
 }
 
 
