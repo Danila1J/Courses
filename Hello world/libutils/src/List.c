@@ -26,7 +26,7 @@ struct List *list_add(struct List **head, int data) {
     }
 }
 
-struct List *list_find(struct List *head, int data) {
+struct List *list_search(struct List *head, int data) {
     while (head) {
         if (head->data == data) {
             return head;
@@ -37,7 +37,7 @@ struct List *list_find(struct List *head, int data) {
 }
 
 void list_remove(struct List **head, struct List *node) {
-    if (list_find(*head, node->data) != NULL) {
+    if (list_search(*head, node->data) != NULL) {
         if (node->prev == NULL && node->next == NULL) {
             (*head)->next = NULL;
             *head = NULL;
@@ -47,7 +47,7 @@ void list_remove(struct List **head, struct List *node) {
             struct List *temp = *head;
             temp = temp->next;
             temp->prev = NULL;
-            *head=temp;
+            *head = temp;
             free(node);
             return;
         }
@@ -61,8 +61,8 @@ void list_remove(struct List **head, struct List *node) {
             free(node);
             return;
         }
-        struct List* temp=*head;
-        while (temp!=node) {
+        struct List *temp = *head;
+        while (temp != node) {
             temp = temp->next;
         }
         temp->prev->next = temp->next;
@@ -87,4 +87,48 @@ void list_print(struct List *head) {
         head = head->next;
     }
     printf("\n");
+}
+
+void list_free(struct List *head) {
+    struct List *temp;
+    while (head) {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
+
+int list_get(struct List *node) {
+    return node->data;
+}
+
+void list_set(struct List *node, int newData) {
+    node->data = newData;
+}
+
+struct List *list_insert(struct List **node, int newData) {
+    if (*node == NULL) {
+        return list_add(node, newData);
+    } else if ((*node)->prev == NULL) {
+        struct List *temp = list_add(node, newData);
+        (*node)->next = temp->next;
+        temp->next = *node;
+        temp->prev = NULL;
+        (*node)->prev = temp;
+        *node=temp;
+        return temp;
+    }
+
+    struct List *tempH = *node;
+    while (tempH != *node) {
+        tempH = tempH->next;
+    }
+    struct List *temp = list_add(node, newData);
+    (*node)->next = temp->next;
+    temp->next = *node;
+    temp->prev = (*node)->prev;
+    (*node)->prev = temp;
+    temp->prev->next = temp;
+    return temp;
+
 }

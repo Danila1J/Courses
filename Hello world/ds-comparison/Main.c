@@ -2,15 +2,18 @@
 #include <libutils/List.h>
 
 int main() {
-    struct List* head=NULL;
-    list_add(&head,1);
-    struct List* n2=list_add(&head,2);
-    list_add(&head,3);
-    list_add(&head,4);
-    list_add(&head,5);
-    list_print(head);
-    list_remove(&head,n2);
-    list_print(head);
+//    struct List* head=NULL;
+//    list_add(&head,1);
+//    list_add(&head,2);
+//    list_insert(&head,4);
+//    list_add(&head,3);
+//    list_add(&head,4);
+//    list_add(&head,5);
+//    list_print(n2);
+//    list_print(head);
+//    printf("---------------------\n");
+//    list_remove(&head,n2);
+//    list_print(head);
 //    struct Tree *root = NULL;
 //    root = tree_insert(root, 4);
 //    root = tree_insert(root, 5);

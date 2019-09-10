@@ -16,10 +16,10 @@ void testSort(size_t n, size_t m) {
     int *masSelectionSort = malloc(sizeof(int) * n);
     int *masShakerSort = malloc(sizeof(int) * n);
     int *masQuickSort = malloc(sizeof(int) * n);
-    clock_t finish1;
-    clock_t finish2;
-    clock_t finish3;
-    clock_t finish4;
+    clock_t finish1=0;
+    clock_t finish2=0;
+    clock_t finish3=0;
+    clock_t finish4=0;
     for (size_t i = 0; i < m; i++) {
         for (size_t k = 0; k < n; ++k) {
             int r = 0;
@@ -30,13 +30,13 @@ void testSort(size_t n, size_t m) {
             masQuickSort[k] = r;
         }
         clock_t start = clock();
-        bubbleSort(masBubbleSort, n);
+        //bubbleSort(masBubbleSort, n);
         finish1 += clock() - start;
         start = clock();
-        selectionSort(masSelectionSort, n);
+        //selectionSort(masSelectionSort, n);
         finish2 += clock() - start;
         start = clock();
-        shakerSort(masShakerSort, n);
+        //shakerSort(masShakerSort, n);
         finish3 += clock() - start;
         start = clock();
         quickSort(masQuickSort, 0, n - 1);
@@ -60,7 +60,7 @@ void testSort(size_t n, size_t m) {
 }
 
 int main() {
-    testSort(10000, 10);
+    testSort(100000, 100);
     // int mas[7] = {1, 3, 4, 7, 5, 9, 0};
     //int mas2[10] = {1, 3, 1, 4, 9, 7, 8, 4, 5, 2};
     //  int mas3[5]={1,2,3,2,1};
