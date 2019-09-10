@@ -4,7 +4,7 @@
 #include <time.h>
 
 
-bool compareArrays(int *a, int *b, size_t count) {
+bool compareArrays(const int *a, const int *b, size_t count) {
     for (size_t i = 0; i < count; ++i)
         if (a[i] != b[i])
             return false;
